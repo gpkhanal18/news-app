@@ -1,0 +1,14 @@
+{
+    "id": "testing-env",
+    "name": "Testing Environment",
+    "values": [
+        {
+            "key": "base_url",
+            "value": "https://newsbackend-test-env.eba-xyz.amazonaws.com",
+            "enabled": true
+        }
+    ],
+    "_postman_variable_scope": "environment",
+    "_postman_exported_at": "2025-01-18T00:00:00.000Z",
+    "_postman_exported_using": "Postman v10"
+}

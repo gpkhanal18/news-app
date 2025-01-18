@@ -1,0 +1,100 @@
+{
+    "info": {
+        "name": "News API Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get All News Articles",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/api/news",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "news"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create a News Article",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"Sample News Title\",\n    \"content\": \"This is a sample news content.\",\n    \"author\": \"Admin\",\n    \"imageUrl\": \"https://via.placeholder.com/150\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/news",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "news"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Update a News Article",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"Updated News Title\",\n    \"content\": \"This is updated news content.\",\n    \"author\": \"Admin\",\n    \"imageUrl\": \"https://via.placeholder.com/150\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/news/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "news",
+                        "1"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete a News Article",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/api/news/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "news",
+                        "1"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}

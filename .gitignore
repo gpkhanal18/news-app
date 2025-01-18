@@ -14,7 +14,7 @@ backend/NewsBackend/*.userosscache
 backend/NewsBackend/*.sln.docstates
 
 # Ignore build artifacts
-backend/NewsBackend/out/
+# backend/NewsBackend/out/
 backend/NewsBackend/*.publish/
 backend/NewsBackend/*.cache/
 
@@ -54,5 +54,5 @@ frontend/news-frontend/package-lock.json
 frontend/news-frontend/yarn.lock
 
 # --- POSTMAN (Optional) ---
-postman/*.json
-postman/*.exported.json
+# postman/*.json
+# postman/*.exported.json
