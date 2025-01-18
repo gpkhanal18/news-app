@@ -1,0 +1,58 @@
+# --- BACKEND (ASP.NET Core) ---
+
+# Ignore everything inside bin and obj folders
+backend/NewsBackend/bin/
+backend/NewsBackend/obj/
+
+# Ignore user-specific files
+backend/NewsBackend/.vs/
+backend/NewsBackend/.idea/
+backend/NewsBackend/.vscode/
+backend/NewsBackend/*.suo
+backend/NewsBackend/*.user
+backend/NewsBackend/*.userosscache
+backend/NewsBackend/*.sln.docstates
+
+# Ignore build artifacts
+backend/NewsBackend/out/
+backend/NewsBackend/*.publish/
+backend/NewsBackend/*.cache/
+
+# Ignore logs
+backend/NewsBackend/logs/
+backend/NewsBackend/*.log
+
+# Ignore sensitive environment files
+backend/NewsBackend/appsettings.Development.json
+backend/NewsBackend/secrets.json
+backend/NewsBackend/.env
+
+# Ignore dependencies
+backend/NewsBackend/packages/
+backend/NewsBackend/node_modules/
+
+# Ignore Docker files (if using Docker)
+backend/NewsBackend/.dockerignore
+backend/NewsBackend/Dockerfile
+backend/NewsBackend/docker-compose.override.yml
+
+# --- FRONTEND (Angular: news-frontend inside frontend) ---
+
+# Ignore dependencies and build artifacts
+frontend/news-frontend/node_modules/
+frontend/news-frontend/dist/
+frontend/news-frontend/.angular/
+frontend/news-frontend/.vscode/
+frontend/news-frontend/.idea/
+
+# Ignore environment files
+frontend/news-frontend/src/environments/environment.ts
+frontend/news-frontend/src/environments/environment.prod.ts
+
+# Ignore dependency lock files
+frontend/news-frontend/package-lock.json
+frontend/news-frontend/yarn.lock
+
+# --- POSTMAN (Optional) ---
+postman/*.json
+postman/*.exported.json
