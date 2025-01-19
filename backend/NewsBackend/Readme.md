@@ -1,8 +1,4 @@
 
-
-### **📰 News API - JWT Authentication & Role-Based Access Control**
-A **.NET 8.0** Web API for managing news articles, featuring **JWT authentication**, **role-based authorization**, and **in-memory database**.
-
 ---
 to push to eb follow below 
 
@@ -11,11 +7,19 @@ rm -rf publish/
 dotnet publish -c Release -o ./publish
 cd publish
 zip -r ../newsroom-api.zip * 
+zip -r ../newsroom-api.zip * .platform/nginx/conf.d/ // didn;t work
 
 
 Newsroom-api-env-test
 Newsroom-api-env-test
 newsroom-api-env-production
+
+
+
+
+### **📰 News API - JWT Authentication & Role-Based Access Control**
+A **.NET 8.0** Web API for managing news articles, featuring **JWT authentication**, **role-based authorization**, and **in-memory database**.
+
 
 ## **📌 Features**
 - ✅ **JWT Authentication** (Login required for certain APIs)
