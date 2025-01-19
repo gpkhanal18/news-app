@@ -1,14 +1,25 @@
-<h2>Login</h2>
-<form (ngSubmit)="login()">
-  <label>Username:</label>
-  <input type="text" [(ngModel)]="username" name="username" required />
-  <br>
-  <label>Password:</label>
-  <input type="password" [(ngModel)]="password" name="password" required />
-  <br>
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+  <div class="card p-4 shadow-lg" style="width: 350px;">
+    <h2 class="text-center mb-4">Login</h2>
 
-  <!-- ✅ Display Error Message -->
-  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+    <form (ngSubmit)="login()">
+      <!-- Username Field -->
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" [(ngModel)]="username" name="username" class="form-control" required />
+      </div>
 
-  <button type="submit">Login</button>
-</form>
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" [(ngModel)]="password" name="password" class="form-control" required />
+      </div>
+
+      <!-- Error Message -->
+      <p *ngIf="errorMessage" class="text-danger text-center">{{ errorMessage }}</p>
+
+      <!-- Login Button -->
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+  </div>
+</div>

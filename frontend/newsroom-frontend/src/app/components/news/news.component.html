@@ -1,48 +1,75 @@
-<h2>News Articles</h2>
+<div class="container">
+  <h2 class="text-center mb-4">📰 News Articles</h2>
 
-<ul>
-  <li *ngFor="let news of newsArticles">
-    <h3>{{ news.title }}</h3>
-    <p>{{ news.content }}</p>
-    <small>By {{ news.author }}</small>
-    <br>
-    <img [src]="news.imageUrl" alt="News Image" width="150" *ngIf="news.imageUrl">
-    <br>
+  <div class="row">
+    <div class="col-md-6 mb-4" *ngFor="let news of newsArticles">
+      <div class="card shadow">
+        <img [src]="news.imageUrl" class="card-img-top" alt="News Image" *ngIf="news.imageUrl">
+        <div class="card-body">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <p class="card-text">{{ news.content }}</p>
+          <p class="text-muted"><strong>By {{ news.author }}</strong></p>
 
-    <!-- ✅ Show Edit & Delete Buttons Only for Admin -->
-    <ng-container *ngIf="isAdmin">
-      <button (click)="editNews(news)">Edit</button>
-      <button (click)="deleteNews(news.id)">Delete</button>
-    </ng-container>
+          <ng-container *ngIf="isAdmin">
+            <button class="btn btn-warning btn-sm me-2" (click)="editNews(news)">✏️ Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteNews(news.id)">🗑 Delete</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <hr>
-  </li>
-</ul>
+    <!-- ✅ Show Edit Form Only When Editing -->
+  <ng-container *ngIf="showEditForm">
+    <div class="card p-4 shadow-lg mt-4">
+      <h3 class="text-center">✏️ Edit News</h3>
+      <form (ngSubmit)="updateNews()">
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" [(ngModel)]="editArticle.title" name="editTitle" class="form-control" placeholder="Enter title" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Content</label>
+          <textarea [(ngModel)]="editArticle.content" name="editContent" class="form-control" placeholder="Enter content" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Author</label>
+          <input type="text" [(ngModel)]="editArticle.author" name="editAuthor" class="form-control" placeholder="Enter author name" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Image URL</label>
+          <input type="text" [(ngModel)]="editArticle.imageUrl" name="editImageUrl" class="form-control" placeholder="Enter image URL" required />
+        </div>
+        <button type="submit" class="btn btn-success w-100">🔄 Update News</button>
+      </form>
+    </div>
+  </ng-container>
 
-<!-- ✅ Show "Add News" Form Only for Admin -->
-<ng-container *ngIf="isAdmin">
-  <h3>Add News</h3>
-  <input type="text" [(ngModel)]="newArticle.title" placeholder="Title" required />
-  <br>
-  <textarea [(ngModel)]="newArticle.content" placeholder="Content" required></textarea>
-  <br>
-  <input type="text" [(ngModel)]="newArticle.author" placeholder="Author" required />
-  <br>
-  <input type="text" [(ngModel)]="newArticle.imageUrl" placeholder="Image URL" required />
-  <br>
-  <button (click)="addNews()">Add News</button>
-</ng-container>
+  <!-- ✅ Show "Add News" Form Only for Admin -->
+  <ng-container *ngIf="isAdmin">
+    <div class="card p-4 shadow-lg mt-4">
+      <h3 class="text-center">➕ Add News</h3>
+      <form (ngSubmit)="addNews()">
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" [(ngModel)]="newArticle.title" name="title" class="form-control" placeholder="Enter title" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Content</label>
+          <textarea [(ngModel)]="newArticle.content" name="content" class="form-control" placeholder="Enter content" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Author</label>
+          <input type="text" [(ngModel)]="newArticle.author" name="author" class="form-control" placeholder="Enter author name" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Image URL</label>
+          <input type="text" [(ngModel)]="newArticle.imageUrl" name="imageUrl" class="form-control" placeholder="Enter image URL" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">✅ Add News</button>
+      </form>
+    </div>
+  </ng-container>
 
-<!-- ✅ Show Edit Form Only When Editing -->
-<ng-container *ngIf="showEditForm">
-  <h3>Edit News</h3>
-  <input type="text" [(ngModel)]="editArticle.title" placeholder="Title" required />
-  <br>
-  <textarea [(ngModel)]="editArticle.content" placeholder="Content" required></textarea>
-  <br>
-  <input type="text" [(ngModel)]="editArticle.author" placeholder="Author" required />
-  <br>
-  <input type="text" [(ngModel)]="editArticle.imageUrl" placeholder="Image URL" required />
-  <br>
-  <button (click)="updateNews()">Update News</button>
-</ng-container>
+
+</div>
