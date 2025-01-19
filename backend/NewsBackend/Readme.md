@@ -1,18 +1,74 @@
+### **📰 Newsroom Backend - AWS Elastic Beanstalk Deployment Guide** 🚀
+
+This guide provides step-by-step instructions to **deploy the Newsroom API** to **AWS Elastic Beanstalk (EB)** for both **Testing** and **Production** environments using the AWS Console.
 
 ---
-to push to eb follow below 
 
-// at project root .ebextension is not required
+## **📌 Deployment Instructions**
+### **1️⃣ Publish the .NET Application**
+Run the following commands **from the project root folder** to build and publish the application:
+
+```sh
+# Remove any previous build output (Run from the project root)
 rm -rf publish/
+
+# Publish the .NET application in Release mode (Run from the project root)
 dotnet publish -c Release -o ./publish
+```
+
+✅ **This ensures that all required `.dll` files and dependencies are included inside the `publish/` folder.**
+
+---
+
+### **2️⃣ Create a Deployment Package**
+After publishing, navigate to the `publish` directory and create a ZIP file containing all required files.
+
+```sh
 cd publish
-zip -r ../newsroom-api.zip * 
-zip -r ../newsroom-api.zip * .platform/nginx/conf.d/ // didn;t work
+zip -r ../newsroom-api.zip *
+```
 
+✅ **Ensure that this ZIP file contains all the necessary `.dll` files directly, so when AWS Elastic Beanstalk unzips it, the application runs smoothly.**
 
-Newsroom-api-env-test
-Newsroom-api-env-test
-newsroom-api-env-production
+---
+
+### **3️⃣ Upload the ZIP File to AWS Elastic Beanstalk (EB)**
+#### **Using AWS Console**
+1. **Log in to AWS Console** → Go to **Elastic Beanstalk**.
+2. Select your **environment**:
+   - **Testing:** `Newsroom-api-env-test`
+   - **Production:** `newsroom-api-env-production`
+3. Click on **Upload and Deploy**.
+4. Click **Choose File**, select `newsroom-api.zip` (created in Step 2).
+5. Click **Deploy** and wait for the deployment process to complete.
+
+---
+
+## **🌍 AWS Elastic Beanstalk Environments**
+| **Environment** | **Elastic Beanstalk Name** |
+|---------------|---------------------------|
+| **Testing** | `Newsroom-api-env-test` |
+| **Production** | `newsroom-api-env-production` |
+
+---
+
+## **✅ Summary**
+| Step | Command |
+|------|---------|
+| **Remove old build files** (Run from project root) | `rm -rf publish/` |
+| **Publish .NET app** (Run from project root) | `dotnet publish -c Release -o ./publish` |
+| **Create ZIP package** | `cd publish && zip -r ../newsroom-api.zip *` |
+| **Upload to AWS EB using AWS Console** | Go to **AWS EB**, click **Upload and Deploy**, and select the ZIP file |
+
+🚀 **Your Newsroom API is now deployed and running on AWS Elastic Beanstalk!** 🎉
+
+---
+
+For any issues, check:
+- **AWS EB Logs** (`Logs` > `Request Logs` in AWS Console)
+- **Elastic Beanstalk Dashboard**
+
+Happy coding! 😊
 
 
 
