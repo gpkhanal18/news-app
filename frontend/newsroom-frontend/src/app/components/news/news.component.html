@@ -1,9 +1,38 @@
 <h2>News Articles</h2>
+
 <ul>
   <li *ngFor="let news of newsArticles">
     <h3>{{ news.title }}</h3>
     <p>{{ news.content }}</p>
     <small>By {{ news.author }}</small>
-    <img [src]="news.imageUrl" alt="news image" width="150">
+    <br>
+
+    <!-- ✅ Show Edit & Delete Buttons Only for Admin -->
+    <ng-container *ngIf="isAdmin">
+      <button (click)="editNews(news)">Edit</button>
+      <button (click)="deleteNews(news.id)">Delete</button>
+    </ng-container>
+
+    <hr>
   </li>
 </ul>
+
+<!-- ✅ Show "Add News" Form Only for Admin -->
+<ng-container *ngIf="isAdmin">
+  <h3>Add News</h3>
+  <input type="text" [(ngModel)]="newArticle.title" placeholder="Title" required />
+  <br>
+  <textarea [(ngModel)]="newArticle.content" placeholder="Content" required></textarea>
+  <br>
+  <button (click)="addNews()">Add News</button>
+</ng-container>
+
+<!-- ✅ Show Edit Form Only When Editing -->
+<ng-container *ngIf="showEditForm">
+  <h3>Edit News</h3>
+  <input type="text" [(ngModel)]="editArticle.title" placeholder="Title" required />
+  <br>
+  <textarea [(ngModel)]="editArticle.content" placeholder="Content" required></textarea>
+  <br>
+  <button (click)="updateNews()">Update News</button>
+</ng-container>
