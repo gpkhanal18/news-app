@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 // Components
@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 // Services
 import { NewsService } from './services/news.service';
 import { AuthService } from './services/auth.service';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NewsComponent, LoginComponent],
@@ -22,7 +23,13 @@ import { AuthService } from './services/auth.service';
     HttpClientModule, // Enables API calls
     FormsModule, // Enables form handling
   ],
-  providers: [NewsService, AuthService],
+  providers: [NewsService, AuthService,
+              {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

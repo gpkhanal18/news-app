@@ -1,6 +1,9 @@
-<h2>Latest News</h2>
+<h2>News Articles</h2>
 <ul>
-  <li *ngFor="let article of news">
-    {{ article.title }} - {{ article.content }}
+  <li *ngFor="let news of newsArticles">
+    <h3>{{ news.title }}</h3>
+    <p>{{ news.content }}</p>
+    <small>By {{ news.author }}</small>
+    <img [src]="news.imageUrl" alt="news image" width="150">
   </li>
 </ul>

@@ -7,13 +7,18 @@ import { NewsService } from '../../services/news.service';
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent implements OnInit {
-  news: any[] = [];
+  newsArticles: any[] = [];
 
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
-    this.newsService.getNews().subscribe((data) => {
-      this.news = data;
+    console.log('Fetching news articles...');
+    this.fetchNews();
+  }
+
+  fetchNews(): void {
+    this.newsService.getAllNews().subscribe((data: any) => {
+      this.newsArticles = data;
     });
   }
 }
