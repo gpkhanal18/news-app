@@ -14,6 +14,8 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5555";
+
 
 var secretKey = builder.Configuration["JwtSettings:SecretKey"];
 if (string.IsNullOrEmpty(secretKey) || secretKey.Length < 16)
@@ -64,8 +66,8 @@ app.MapControllers();
 
 SeedAdminUser(app);
 
-app.Run();
-
+//app.Run();
+app.Run($"http://*:{port}");
 
 // Function to Seed Admin User
 void SeedAdminUser(WebApplication app)
