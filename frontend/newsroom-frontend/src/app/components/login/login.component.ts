@@ -7,28 +7,30 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  username: string = ''; // ✅ Ensure default values
+  username: string = '';
   password: string = '';
+  errorMessage: string | null = null; // ✅ Holds login error message
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
+    this.errorMessage = null; // Reset error message before attempting login
+
     if (!this.username || !this.password) {
-      console.error('❌ Username or password is missing!');
+      this.errorMessage = '❌ Username and password are required!';
       return;
     }
-
-    console.log('✅ Sending Login Request:', {
-      username: this.username,
-      password: this.password,
-    });
 
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
         console.log('✅ Login successful:', response);
         this.router.navigate(['/news']);
       },
-      (error) => console.error('❌ Login error:', error)
+      (error) => {
+        console.error('❌ Login error:', error);
+        this.errorMessage =
+          '❌ Invalid username or password! Please try again.';
+      }
     );
   }
 }

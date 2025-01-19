@@ -6,5 +6,9 @@
   <label>Password:</label>
   <input type="password" [(ngModel)]="password" name="password" required />
   <br>
+
+  <!-- ✅ Display Error Message -->
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
   <button type="submit">Login</button>
 </form>

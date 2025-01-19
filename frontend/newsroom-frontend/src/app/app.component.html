@@ -1,9 +1,18 @@
 <nav>
   <a routerLink="/">Home</a> |
   <a routerLink="/news">News</a> |
-  <a routerLink="/login">Login</a>
+
+  <span style="float: right;">
+    <ng-container *ngIf="isAuthenticated; else loginTemplate">
+      <span>Welcome, {{ username }}!</span> |
+      <button (click)="logout()">Logout</button>
+    </ng-container>
+
+    <ng-template #loginTemplate>
+      <a routerLink="/login">Login</a>
+    </ng-template>
+  </span>
 </nav>
 
-<div>
+<!-- Router Outlet -->
 <router-outlet></router-outlet>
-</div>
