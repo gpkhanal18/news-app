@@ -11,8 +11,8 @@ export class NewsComponent implements OnInit {
   newsArticles: any[] = [];
   isAuthenticated: boolean = false;
   isAdmin: boolean = false;
-  newArticle = { title: '', content: '' }; // Form model for adding new news
-  editArticle = { id: null, title: '', content: '' }; // Form model for editing news
+  newArticle = { title: '', content: '', author: '', imageUrl: '' }; // ✅ Added author and imageUrl
+  editArticle = { id: null, title: '', content: '', author: '', imageUrl: '' }; // ✅ Added author and imageUrl
   showEditForm = false;
 
   constructor(
@@ -37,8 +37,13 @@ export class NewsComponent implements OnInit {
   }
 
   addNews(): void {
-    if (!this.newArticle.title || !this.newArticle.content) {
-      alert('❌ Title and Content are required!');
+    if (
+      !this.newArticle.title ||
+      !this.newArticle.content ||
+      !this.newArticle.author ||
+      !this.newArticle.imageUrl
+    ) {
+      alert('❌ All fields (Title, Content, Author, Image URL) are required!');
       return;
     }
 
@@ -46,7 +51,7 @@ export class NewsComponent implements OnInit {
       () => {
         alert('✅ News article added successfully!');
         this.fetchNews();
-        this.newArticle = { title: '', content: '' }; // Reset form
+        this.newArticle = { title: '', content: '', author: '', imageUrl: '' }; // Reset form
       },
       (error) => console.error('❌ Error adding news:', error)
     );
@@ -58,12 +63,19 @@ export class NewsComponent implements OnInit {
       id: article.id,
       title: article.title,
       content: article.content,
+      author: article.author,
+      imageUrl: article.imageUrl,
     };
   }
 
   updateNews(): void {
-    if (!this.editArticle.title || !this.editArticle.content) {
-      alert('❌ Title and Content are required!');
+    if (
+      !this.editArticle.title ||
+      !this.editArticle.content ||
+      !this.editArticle.author ||
+      !this.editArticle.imageUrl
+    ) {
+      alert('❌ All fields (Title, Content, Author, Image URL) are required!');
       return;
     }
 

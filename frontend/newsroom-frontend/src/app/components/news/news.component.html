@@ -6,6 +6,8 @@
     <p>{{ news.content }}</p>
     <small>By {{ news.author }}</small>
     <br>
+    <img [src]="news.imageUrl" alt="News Image" width="150" *ngIf="news.imageUrl">
+    <br>
 
     <!-- ✅ Show Edit & Delete Buttons Only for Admin -->
     <ng-container *ngIf="isAdmin">
@@ -24,6 +26,10 @@
   <br>
   <textarea [(ngModel)]="newArticle.content" placeholder="Content" required></textarea>
   <br>
+  <input type="text" [(ngModel)]="newArticle.author" placeholder="Author" required />
+  <br>
+  <input type="text" [(ngModel)]="newArticle.imageUrl" placeholder="Image URL" required />
+  <br>
   <button (click)="addNews()">Add News</button>
 </ng-container>
 
@@ -33,6 +39,10 @@
   <input type="text" [(ngModel)]="editArticle.title" placeholder="Title" required />
   <br>
   <textarea [(ngModel)]="editArticle.content" placeholder="Content" required></textarea>
+  <br>
+  <input type="text" [(ngModel)]="editArticle.author" placeholder="Author" required />
+  <br>
+  <input type="text" [(ngModel)]="editArticle.imageUrl" placeholder="Image URL" required />
   <br>
   <button (click)="updateNews()">Update News</button>
 </ng-container>
