@@ -4,18 +4,9 @@
 A **.NET 8.0** Web API for managing news articles, featuring **JWT authentication**, **role-based authorization**, and **in-memory database**.
 
 ---
-rm -rf publish/
-dotnet publish -c Release -o ./publish from project root 
-dotnet publish -c Release -o ./publish --self-contained false
+to push to eb follow below 
 
-
-
-zip -r newsroom-api.zip publish .ebextensions from project root 
-
-
-
-dotnet publish -c Release -o ./publish
-
+dotnet publish -c Release -o ./publish // from project root 
 zip -r ../newsroom-api.zip * ../.ebextensions // from inside publish folder
 
 
