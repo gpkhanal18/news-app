@@ -6,12 +6,16 @@ A **.NET 8.0** Web API for managing news articles, featuring **JWT authenticatio
 ---
 to push to eb follow below 
 
-// at project root 
+// at project root .ebextension is not required
 rm -rf publish/
 dotnet publish -c Release -o ./publish
 cd publish
-zip -r ../newsroom-api.zip * ../.ebextensions
+zip -r ../newsroom-api.zip * 
 
+
+Newsroom-api-env-test
+Newsroom-api-env-test
+newsroom-api-env-production
 
 ## **📌 Features**
 - ✅ **JWT Authentication** (Login required for certain APIs)
