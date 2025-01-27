@@ -42,10 +42,33 @@ Use the **Newsroom API Test Environment**:
 ```  
 - **Extract the token from the response.**  
 
+---
+
 ### **Step 2: Read Existing News Articles**  
 - **Request Method:** `GET`  
 - **URL:** `/news`  
 - **Expected Response:** List of news articles in JSON format.  
+
+📌 **IMPORTANT:**  
+- **Extract the `id` of at least two news articles** from the response for **Step 5 (Update)** and **Step 6 (Delete).**  
+- **Example Response:**  
+```json
+[
+   {
+      "id": "123456",
+      "title": "Sample News",
+      "content": "Some content here...",
+      "author": "John Doe"
+   },
+   {
+      "id": "789101",
+      "title": "Another News",
+      "content": "More content...",
+      "author": "Jane Doe"
+   }
+]
+```
+---
 
 ### **Step 3: Create 5 News Articles**  
 Use the token from **Step 1**.  
@@ -64,14 +87,22 @@ Use the token from **Step 1**.
 ```
 *(Repeat this with different titles, authors, and content for five news articles.)*  
 
+---
+
 ### **Step 4: Read and Verify Created Articles**  
 - **Request Method:** `GET`  
 - **URL:** `/news`  
 - **Verify that all five articles exist.**  
 
+---
+
 ### **Step 5: Update 2 News Articles**  
+📌 **IMPORTANT:**  
+- **Use the `id` from the `GET /news` API response in Step 2.**  
+- **Example: If the article you want to update has `id = 123456`, replace `{id}` in the URL with `123456`.**  
+
 - **Request Method:** `PUT`  
-- **URL:** `/news/{id}`  
+- **URL:** `/news/{id}` (Replace `{id}` with the actual news ID)  
 - **Headers:** `Authorization: Bearer <token>`  
 - **Body:**  
 ```json
@@ -82,12 +113,19 @@ Use the token from **Step 1**.
    "imageUrl": "https://example.com/newimage.jpg"
 }
 ```
-*(Update two different articles with new content.)*  
+
+---
 
 ### **Step 6: Delete 1 News Article**  
+📌 **IMPORTANT:**  
+- **Use the `id` from the `GET /news` API response in Step 2.**  
+- **Example: If the article you want to delete has `id = 789101`, replace `{id}` in the URL with `789101`.**  
+
 - **Request Method:** `DELETE`  
-- **URL:** `/news/{id}`  
+- **URL:** `/news/{id}` (Replace `{id}` with the actual news ID)  
 - **Headers:** `Authorization: Bearer <token>`  
+
+---
 
 ### **Step 7: Verify Data Integrity**  
 1. Retrieve the **remaining** articles using `GET /news`.  
